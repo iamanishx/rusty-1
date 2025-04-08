@@ -5,7 +5,7 @@ use std::net::SocketAddr;
 
 async fn handle_request(req: Request<Body>) -> Result<Response<Body>, Infallible> {
     match (req.method(), req.uri().path()) {
-        (&Method::GET, "/") => Ok(Response::new(Body::from("Hi from Mbxd!"))),
+        (&Method::GET, "/") => Ok(Response::new(Body::from("let's get rusty wid Mbxd!"))),
         _ => {
             let mut not_found = Response::new(Body::from("Not Found"));
             *not_found.status_mut() = StatusCode::NOT_FOUND;
