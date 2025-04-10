@@ -20,23 +20,14 @@
 
 ## 🔍 What is a BFF (Backend-for-Frontend)?
 
-A **Backend-for-Frontend (BFF)** is a server that sits between your frontend application and backend services. It provides several advantages over traditional reverse proxies, specifically tailored to the frontend's needs.
+A **Backend-for-Frontend (BFF)** is a server that sits between your frontend application and backend services. It provides several advantages over  reverse proxies, specifically tailored to the frontend's needs.
 
 ---
 
 ### ✅ Problems Solved
 
 - **CORS Issues**  
-  Eliminates cross-origin resource sharing problems by serving from the same origin as the frontend.
-
-- **API Aggregation** *(future enhancement)*  
-  Combines multiple API calls into a single endpoint for efficiency.
-
-- **Protocol Translation**  
-  Allows frontend to use simple HTTP while the backend may use complex protocols.
-
-- **Authentication** *(future enhancement)*  
-  Offloads auth token management from frontend code to the BFF layer.
+  Eliminates cross-origin resource sharing problems as this will work as backend to backend communication .
 
 - **Performance**  
   Built in Rust for ultra-high throughput (100k+ requests/second).
