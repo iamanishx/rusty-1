@@ -39,23 +39,10 @@ A **Backend-for-Frontend (BFF)** is a server that sits between your frontend app
   Offloads auth token management from frontend code to the BFF layer.
 
 - **Performance**  
-  Built in Rust for ultra-high throughput (5,000–10,000+ requests/second).
+  Built in Rust for ultra-high throughput (100k+ requests/second).
 
 - **Security**  
   Minimal attack surface via a tiny Alpine-based container (0 vulnerabilities).
-
----
-
-### 🔄 BFF vs Reverse Proxy
-
-| Feature               | Reverse Proxy         | BFF (Backend-for-Frontend)        |
-|-----------------------|------------------------|-----------------------------------|
-| **Purpose**           | Generic request forwarding | Tailored to frontend needs       |
-| **Data Transformation** | ❌ Not supported       | ✅ Yes                            |
-| **CORS Handling**     | ❌ Needs config         | ✅ Built-in support               |
-| **API Aggregation**   | ❌ Manual effort        | ✅ Easily implemented             |
-| **Simplification**    | ❌ Pass-through         | ✅ Hides backend complexity       |
-| **Performance**       | ✅ Depends on stack     | ✅ Built with Rust (blazing fast) |
 
 ---
 
