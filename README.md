@@ -90,7 +90,7 @@ docker run -p 8080:8080 \
 | `MAX_IDLE_CONNS_PER_HOST` | Maximum idle connections per host     | `1000`          |
  
 
-🐳 Docker Compose Example
+🐳 Docker Compose Example for your frontend : 
 ```
 version: '3'
 services:
