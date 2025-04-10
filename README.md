@@ -52,16 +52,22 @@ This project is **open source** and contributions are welcome!
 
 ### 🔧 Build & Run Locally
 
-```bash
+bash
+
 # Clone the repository
+```
 git clone https://github.com/iamanishx/proxy-xd.git
 cd proxy-xd
-
+```
 # Build in release mode
+```
 cargo build --release
+```
 
 # Run the server
-BACKEND_URL=http://localhost:4000/graphql cargo run
+```
+BACKEND_URL=http://localhost:4000/graphql 
+cargo run
 ```
 
 ## 🚀 Quick Start
