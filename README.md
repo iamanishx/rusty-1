@@ -62,7 +62,7 @@ cargo build --release
 
 # Run the server
 BACKEND_URL=http://localhost:4000/graphql cargo run
-
+```
 
 ## 🚀 Quick Start
 
