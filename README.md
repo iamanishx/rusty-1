@@ -1,9 +1,9 @@
 <div align="center">
 
-  <h1>GraphQL/tRPC Proxy Server</h1>
+  <h1>HTTP Proxy Server</h1>
 
   <p>
-    A lightweight Backend-for-Frontend (BFF) proxy server built in Rust, designed to proxy GraphQL and tRPC requests.
+    A lightweight Backend-for-Frontend (BFF) proxy server built in Rust, designed to proxy REST, GraphQL and tRPC requests.
   </p>
 
   <a href="https://github.com/iamanishx/proxy-xd/releases">
@@ -18,6 +18,74 @@
 
 </div>
 
+## 🔍 What is a BFF (Backend-for-Frontend)?
+
+A **Backend-for-Frontend (BFF)** is a server that sits between your frontend application and backend services. It provides several advantages over traditional reverse proxies, specifically tailored to the frontend's needs.
+
+---
+
+### ✅ Problems Solved
+
+- **CORS Issues**  
+  Eliminates cross-origin resource sharing problems by serving from the same origin as the frontend.
+
+- **API Aggregation** *(future enhancement)*  
+  Combines multiple API calls into a single endpoint for efficiency.
+
+- **Protocol Translation**  
+  Allows frontend to use simple HTTP while the backend may use complex protocols.
+
+- **Authentication** *(future enhancement)*  
+  Offloads auth token management from frontend code to the BFF layer.
+
+- **Performance**  
+  Built in Rust for ultra-high throughput (5,000–10,000+ requests/second).
+
+- **Security**  
+  Minimal attack surface via a tiny Alpine-based container (0 vulnerabilities).
+
+---
+
+### 🔄 BFF vs Reverse Proxy
+
+| Feature               | Reverse Proxy         | BFF (Backend-for-Frontend)        |
+|-----------------------|------------------------|-----------------------------------|
+| **Purpose**           | Generic request forwarding | Tailored to frontend needs       |
+| **Data Transformation** | ❌ Not supported       | ✅ Yes                            |
+| **CORS Handling**     | ❌ Needs config         | ✅ Built-in support               |
+| **API Aggregation**   | ❌ Manual effort        | ✅ Easily implemented             |
+| **Simplification**    | ❌ Pass-through         | ✅ Hides backend complexity       |
+| **Performance**       | ✅ Depends on stack     | ✅ Built with Rust (blazing fast) |
+
+---
+
+## 📦 Image Details
+
+- **Latest tag**: `iamanishx/proxy-xd:latest`  
+- **Version tag**: `iamanishx/proxy-xd:0.1.0`  
+- **Base image**: Alpine 3.19 (minimal footprint)  
+- **Image size**: ~15MB  
+
+---
+
+## 🛠️ Development
+
+This project is **open source** and contributions are welcome!
+
+### 🔧 Build & Run Locally
+
+```bash
+# Clone the repository
+git clone https://github.com/iamanishx/proxy-xd.git
+cd proxy-xd
+
+# Build in release mode
+cargo build --release
+
+# Run the server
+BACKEND_URL=http://localhost:4000/graphql cargo run
+
+
 ## 🚀 Quick Start
 
 ```bash
@@ -29,14 +97,17 @@ docker run -p 8080:8080 \
   -e BACKEND_URL=http://your-api-service:4000/graphql \
   -e LISTEN_ADDR=0.0.0.0:8080 \
   iamanishx/proxy-xd:latest
+```
+## 🔧 Configuration
 
-🔧 Configuration
-Environment Variable	Description	Default
-BACKEND_URL	URL of your API service	Required
-LISTEN_ADDR	Address:port the proxy listens on	0.0.0.0:8080
-RUST_LOG	Logging level	info
-MAX_IDLE_CONNS	Maximum idle connections	1000
-MAX_IDLE_CONNS_PER_HOST	Maximum idle connections per host	1000  
+| Environment Variable       | Description                           | Default         |
+|---------------------------|---------------------------------------|-----------------|
+| `BACKEND_URL`             | URL of your API service               | **Required**    |
+| `LISTEN_ADDR`             | Address:port the proxy listens on     | `0.0.0.0:8080`  |
+| `RUST_LOG`                | Logging level                         | `info`          |
+| `MAX_IDLE_CONNS`          | Maximum idle connections              | `1000`          |
+| `MAX_IDLE_CONNS_PER_HOST` | Maximum idle connections per host     | `1000`          |
+ 
 
 🐳 Docker Compose Example
 ```
@@ -63,44 +134,6 @@ services:
     ports:
       - "4000:4000"
 ```      
-🔍 What is a BFF (Backend-for-Frontend)?
-A BFF server sits between your frontend application and backend services, providing several advantages over a traditional reverse proxy:
-
-Problems Solved
-CORS Issues: Eliminates cross-origin resource sharing problems by having the proxy serve from the same origin as your frontend
-
-API Aggregation: Can combine multiple API calls into a single endpoint (future enhancement)
-
-Protocol Translation: Allows frontend to use simple HTTP while backend might use more complex protocols
-
-Authentication: Can handle auth token management away from frontend code (future enhancement)
-
-Performance: Built in Rust for high throughput (5,000-10,000+ requests/second)
-
-Security: Minimizes attack surface with a tiny Alpine-based container (0 vulnerabilities)
-
-BFF vs Reverse Proxy
-While a reverse proxy simply forwards requests to backend services, a BFF is designed specifically to support frontend needs:
-
-Frontend-specific: Tailored to a specific frontend application's requirements
-Transformation: Can transform data between frontend and backend formats
-Simplification: Hides backend complexity from frontend developers
-📦 Image Details
-Latest tag: iamanishx/proxy-xd:latest
-Version tag: iamanishx/proxy-xd:0.1.0
-Base image: Alpine 3.19 (minimal footprint)
-Image size: ~15MB
-🛠️ Development
-This project is open source. Contributions are welcome!
-
-# Clone the repository
-git clone https://github.com/iamanishx/proxy-xd.git
-
-# Build locally
-cargo build --release
-
-# Run locally
-BACKEND_URL=http://localhost:4000/graphql cargo run
 
 📄 License
 MIT
